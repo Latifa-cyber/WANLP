@@ -1,7 +1,10 @@
+import Navbar from "../components/Navbar";
 function Checkpage() {
   return (
-    <div>Checkpage</div>
-  )
+    <div>
+      <Navbar />
+    </div>
+  );
 }
 
-export default Checkpage
+export default Checkpage;
