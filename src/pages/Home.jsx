@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Marketing from "../components/Marketing";
@@ -12,6 +13,7 @@ function Home() {
       <Hero />
       <Preview />
       <Marketing />
+      <Footer />
     </div>
   );
 }
