@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 function Checkpage() {
   return (
-    <div>
+    <div className="backg">
       <Navbar />
     </div>
   );

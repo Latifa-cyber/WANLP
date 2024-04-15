@@ -4,10 +4,10 @@ import result from "../assets/result.png";
 function Preview() {
   return (
     <div>
-      <h1 className="text-5xl font-bold text-center my-5">
+      <h1 className="md:text-5xl text-3xl font-bold md:my-10 my-5 leading-tight text-center">
         إستخدم Plag <span className="text-blue-600">Check</span> اليوم لأجل
       </h1>
-      <h2 className="text-blue-600 text-3xl font-semibold text-center my-8">
+      <h2 className="text-blue-600 md:text-3xl text-xl font-semibold text-center my-8">
         التحقق من السرقة العلمية!
       </h2>
       <div className="md:grid grid-cols-2 gap-1 justify-evenly">
