@@ -1,6 +1,6 @@
-import img1 from "../assets/home.png";
+import home from "../../assets/home.png";
 import { Link } from "react-router-dom";
-import arrow from "../assets/scroll-arrow.png";
+import arrow from "../../assets/scroll-arrow.png";
 
 function Hero() {
   const scrollDown = () => {
@@ -27,7 +27,7 @@ function Hero() {
           </Link>
         </div>
         <div className="">
-          <img className="w-[400px] mx-auto" src={img1} alt="heroImg" />
+          <img className="w-[400px] mx-auto" src={home} alt="heroImg" />
         </div>
       </div>
       <div className="flex justify-center">

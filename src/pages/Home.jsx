@@ -1,9 +1,11 @@
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import Hero from "../components/Hero";
-import Marketing from "../components/Marketing";
+import Footer from "../components/Home/Footer";
+import Header from "../components/Home/Header";
+import Hero from "../components/Home/Hero";
+import Marketing from "../components/Home/Marketing";
 import Navbar from "../components/Navbar";
-import Preview from "../components/Preview";
+import Preview from "../components/Home/Preview";
+
+import { features } from "../data/features";
 
 function Home() {
   return (
@@ -12,7 +14,7 @@ function Home() {
       <Navbar />
       <Hero />
       <Preview />
-      <Marketing />
+      <Marketing features={features} />
       <Footer />
     </div>
   );

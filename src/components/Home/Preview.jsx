@@ -1,5 +1,5 @@
-import upload from "../assets/upload.png";
-import result from "../assets/result.png";
+import upload from "../../assets/upload.png";
+import result from "../../assets/result.png";
 
 function Preview() {
   return (
