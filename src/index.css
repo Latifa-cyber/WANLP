@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .dark-mode-bg{
+    background: #000e34;
+} */
+
+.backg {
+  background: #E7E7E7;
+}
+
+
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.checkBtn {
+  min-width: 6rem;
+  border: 0.1rem solid #ffffff;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.75rem;
+  color: #ffffff;
+  font-weight: semibold;
+  font-size: 1.25rem;
+
+}
+
+.list-section li .upper-row {
+
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0px 5px;
+}
+
+.list-section {
+  text-align: right;
+  border: 1.5px solid #E7E7E7;
+  border-radius: 10px;
+  padding: 3px 10px;
+  width: 100%;
+}
+
+.list-section li {
+  display: flex;
+  align-items: center;
+}
+
+.prog-bar {
+  height: 7px;
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 5px;
+  margin: 5px;
+  transition: width 0.45s ease;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.prog-bar>span {
+  display: block;
+  height: 100%;
+  border-radius: 5px;
+  background-color: #007bff;
+}
+
+
+.form.drag-over {
+  color: #fff;
+  background: #CED9F9;
+  border: 2px solid #1640C1;
+}
+
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uploadform {
+  height: 220px;
+  display: flex;
+  margin: 25px 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 2px dashed #6990F2;
+}
+
+label {
+  display: inline-block;
+  color: #3B67E9;
+  border: 1.5px solid #3B67E9;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.Upload-completed {
+  text-align: right;
+  border: 1.5px solid #E7E7E7;
+  border-radius: 10px;
+  width: 100%;
+}
+
+
+.Upload-completed li {
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  padding: 10px 15px;
+  transition-duration: 0.50s;
+}
+
+.Upload-completed li .col {
+  flex: .1;
+  margin-right: 15px;
+}
+
+.Upload-completed li .col:nth-child(1) {
+  flex: .15;
+}
+
+.Upload-completed li .col:nth-child(2) {
+  flex: .75;
+  text-align: left;
+  font-size: 0.8rem;
+  color: #6D6D6D;
+}
+
+.Upload-completed li .col:nth-child(2) div.name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 250px;
+  display: inline-block;
+}
+
+.Upload-completed li .col .file-size {
+  font-size: 0.75rem;
+  color: #707EA0;
+}
+
+
+.RsultCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  width: 10rem;
+  border: 1px solid #3B82F6;
+  border-radius: 8px;
+  color: #1E3A8A;
+}

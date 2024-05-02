@@ -1,0 +1,269 @@
+
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+} 
+
+.list-section li .upper-row{
+
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0px 5px;
+}
+
+.list-section{
+  text-align: right;
+  border: 1.5px solid #E7E7E7;
+  border-radius: 10px;
+  padding: 3px 10px;
+  width: 100%;
+}
+
+.list-section li{
+  display: flex;
+  align-items: center;
+}
+
+.prog-bar {
+  height: 7px;
+  width: 97%;
+  background-color: #ddd;
+  border-radius: 5px;
+  margin: 5px;
+  transition: width 0.45s ease;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.prog-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 5px;
+  background-color: #007bff;}
+
+
+
+header {
+  background-color: #E7E7E7;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999; /* Ensure it's above other content */
+}
+
+.footer {
+  font-weight: 470;
+  color: white;
+  background-color: #3B67E9;
+  padding: 10px 30px;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+
+.brand img {
+  width: 70%; /* Set the width to make the image smaller */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.Arrow{
+  width: 20vw; /* Set the width to make the image smaller */
+  height: auto; /* Maintain aspect ratio */
+}
+.Forstudents{
+  width: 50%; /* Set the width to make the image smaller */
+  height: auto;
+}
+
+
+.hamburger-menu img{
+  cursor: pointer;
+  width: 70%;
+  height: auto;
+}
+
+.form.drag-over {
+  color: #fff;
+  background: #CED9F9;
+  border: 2px solid #1640C1;
+}
+
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SideText{
+  width:25%;
+  margin-left: 10vw;
+
+}
+.wrapper{
+  width: 430px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 7px 7px 12px rgba(0,0,0,0.05);
+}
+.title {
+  color: #3B67E9;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: right;
+}
+.form{
+  height: 190px;
+  display: flex;
+  margin: 30px 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 2px dashed #6990F2;
+}
+
+.form p{
+  margin-top: 15px;
+  font-size: 16px;
+  color: black;
+}
+
+label{
+  display: inline-block;
+  color: #3B67E9;
+  border: 1.5px solid #3B67E9;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.Upload-completed{
+  text-align: right;
+  border: 1.5px solid #E7E7E7;
+  border-radius: 10px;
+  width: 100%;
+}
+
+
+.Upload-completed li{
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  padding: 10px 15px;
+  transition-duration: 0.50s;
+}
+
+.Upload-completed li .col{
+  flex: .1;
+  margin-right: 15px;
+}
+.Upload-completed li .col:nth-child(1){
+  flex: .15;
+}
+
+.Upload-completed li .col:nth-child(2){
+  flex: .75;
+  text-align: left;
+  font-size: 0.8rem;
+  color: #6D6D6D;
+}
+.Upload-completed li .col:nth-child(2) div.name{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 250px;
+  display: inline-block;
+}
+
+.Upload-completed li .col .file-size{
+  font-size: 0.75rem;
+  color: #707EA0;
+}
+
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.separator {
+  margin-top: 1rem;
+  height: 2px;
+  background-color: #E5E7EB;
+  border: none;
+}
+
+.sub-title {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #6D6D6D;
+}
+
+.RsultCard{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  width: 10rem;
+  border: 1px solid #3B82F6;
+  border-radius: 8px;
+  color: #1E3A8A;
+}
+
+.textSource{
+  background-color: #EDEDED;
+  border-radius: 0.375rem;
+  color: #1F2937;
+  padding: 0.625rem 0.5rem;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
