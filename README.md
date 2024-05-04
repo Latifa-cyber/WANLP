@@ -1,8 +1,23 @@
-# React + Vite
+# Plagiarism checker application
+## Description
+A web application with an AI model that checks for plagiarised text in arabic documents using natural language processing.
+## How it works
+You can upload an arabic document to check if it's original or plagiarised
+## Used technologies
+### Frontend
+- React.js
+- Tailwind css
+- Redux
+### Model training
+- python
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Get started
+#### creating the project:
+- `npm create vite@latest`
+#### installing dependencies
+- `npm install`
+- `npm i react-router-dom`
+- `npm install -D tailwindcss postcss autoprefixer`
+- `npx tailwindcss init -p`
+- `npm install @reduxjs/toolkit`
+- `npm install react-redux`
