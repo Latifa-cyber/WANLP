@@ -1,76 +1,45 @@
-import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import uploadIcon from "../../assets/uploadIcon.png";
 import Close_icon from "../../assets/Close_icon.svg";
 import TextIcon from "../../assets/TextIcon.png";
+import { FaArrowLeft } from 'react-icons/fa'; //run npm install react-icons
 
 
 function Upload() {
   // States to manage file upload process
   const [file, setFile] = useState(null);
   const [fileContent, setFileContent] = useState(null);
+  const navigate = useNavigate();
   const [progress, setProgress] = useState({ started: false, pc: 0 });
   const [msg, setMsg] = useState(null);
-  const [cancelToken, setCancelToken] = useState(null);
   const [uploadCompleted, setUploadCompleted] = useState(false);
   const totalExpectedTimeInSeconds = 30;
 
-  /**
-   * Function to handle file upload.
-   * @param {string} fileContent - Content of the file to be uploaded.
-   */
-  function handleUpload(fileContent) {
-    setMsg("جاري التحميل..."); // Setting upload message
-    setProgress((prevState) => ({ ...prevState, started: true })); // Setting upload progress
 
-    // Creating cancel token
-    const source = axios.CancelToken.source();
-    setCancelToken(source);
-
-    // Making POST request to upload file content
-    axios.post(
-      "http://localhost:8000/report",
-      { uploaded_document: fileContent },
-      {
-        // Handling upload progress
-        onUploadProgress: (progressEvent) => {
-          const percentCompleted = Math.round(
-            (progressEvent.loaded * 100) / progressEvent.total
-          );
-          setProgress((prevState) => ({ ...prevState, pc: percentCompleted }));
-        },
-        cancelToken: source.token, // Setting cancel token
-        headers: {
-          "Content-Type": "application/json",
-        }
-      }
-    )
-      .then((res) => {
-        setMsg("تم التحميل بنجاح!"); // Setting success message
-        console.log(res.data); // Logging response data
-        setUploadCompleted(true);
-        setPlagiarismResult(res.data); // Setting plagiarism result
-      })
-      .catch((err) => {
-        setMsg("فشل التحميل!"); // Setting error message
-        console.error(err); // Logging error
-      });
-  }
-
-  /**
-   * Function to read .Text file content and handle upload.
-   * @param {Event} e - File input change event.
-   */
-  const handleFileRead = (e) => {
+    const handleFileRead = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
 
     // Reading file content
     const reader = new FileReader();
+    reader.onloadstart = () => {
+      setMsg("جاري التحميل...");
+      setProgress({ started: true, pc: 0 });
+    };
+    reader.onprogress = (event) => {
+      const percentCompleted = Math.round((event.loaded * 100) / event.total);
+      setProgress({ started: true, pc: percentCompleted });
+    };
     reader.onload = function (event) {
       const content = event.target.result;
       setFileContent(content);
-      handleUpload(content); // Handling file upload
+      setMsg("تم التحميل بنجاح!");
+      setUploadCompleted(true);
+    };
+    reader.onerror = () => {
+      setMsg("فشل التحميل!");
+      setProgress({ started: false, pc: 0 });
     };
     reader.readAsText(selectedFile);
   };
@@ -78,46 +47,54 @@ function Upload() {
   // Calculating remaining time for upload completion
   const remainingTime = Math.ceil((100 - progress.pc) / 100 * totalExpectedTimeInSeconds);
 
+  const handleSubmit = () => {
+    if (fileContent) {
+      localStorage.setItem('fileContent', fileContent);
+      navigate('/check/result');
+    }
+  };
+
   /**
    * Function to cancel upload.
    */
   function handleCancel() {
-    if (cancelToken) {
-      cancelToken.cancel("Upload canceled!"); // Canceling upload
-      setCancelToken(null);
-      setProgress({ started: false, pc: 0 }); // Resetting progress
-    }
+    setMsg("تم إلغاء التحميل!");
+    setProgress({ started: false, pc: 0 });
   }
 
   /**
-   * Function to handle file drop.
-   * @param {Event} e - Drop event.
-   */
-  const handleDrop = (e) => {
-    e.preventDefault();
-    const droppedFile = e.dataTransfer.files[0];
-    setFile(droppedFile);
-    setShowProgress(true);
-    handleUpload();
-  };
+ * Function to handle drag over.
+ * @param {Event} e - Drag over event.
+ */
+const handleDragOver = (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  e.dataTransfer.dropEffect = 'copy'; // Explicitly showing it's a copy
+  e.currentTarget.classList.add('drag-over');
+};
 
-  /**
-   * Function to handle drag over.
-   * @param {Event} e - Drag over event.
-   */
-  const handleDragOver = (e) => {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'copy'; // Explicitly showing it's a copy
-    e.currentTarget.classList.add('drag-over');
-  };
+/**
+ * Function to handle drag leave.
+ * @param {Event} e - Drag leave event.
+ */
+const handleDragLeave = (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  e.currentTarget.classList.remove('drag-over');
+};
 
-  /**
-   * Function to handle drag leave.
-   * @param {Event} e - Drag leave event.
-   */
-  const handleDragLeave = (e) => {
-    e.currentTarget.classList.remove('drag-over');
-  };
+/**
+ * Function to handle file drop.
+ * @param {Event} e - Drop event.
+ */
+const handleDrop = (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  const droppedFile = e.dataTransfer.files[0];
+  setFile(droppedFile);
+  handleFileRead(e);
+  e.currentTarget.classList.remove('drag-over');
+};
 
   return (
     <div>
@@ -137,7 +114,7 @@ function Upload() {
         <input onChange={(e) => { setFile(e.target.files[0]); handleFileRead(e); }} type="file" id="fileinputBtn" hidden accept=".txt,.pdf,.doc,.docx" />
       </div>
       <p className="mt-7 text-l font-semibold text-gray-500">يدعم فقط txt. وpdf. و doc.</p>
-
+            
       {progress.started ? (
         uploadCompleted && progress.pc == 100 ? (
           <section className="Upload-completed mt-4">
@@ -148,7 +125,7 @@ function Upload() {
 
               <div className="col">
                 <div className="file-name">
-                  <div className="name" style={{ fontWeight: 470 }}>{file.name}</div>
+                  <div className="name" style={{ fontWeight: 470 }}>{file.name} </div>
                 </div>
                 <div className="file-size">{(file.size / (1024 * 1024)).toFixed(2)} MB</div>
               </div>
@@ -182,6 +159,12 @@ function Upload() {
           </section>
         )
       ) : null}
+      <section className="flex justify-end mt-5">
+        <button onClick={handleSubmit} className="bg-blue-700 px-7 py-3 rounded-xl text-white font-semibold md:text-l ">
+              متابعة
+              <FaArrowLeft className="mr-3 inline" />
+        </button>
+      </section>
     </div>
   );
 }
