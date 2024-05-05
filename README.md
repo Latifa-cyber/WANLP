@@ -12,12 +12,31 @@ You can upload an arabic document to check if it's original or plagiarised
 - python
 
 ### Get started
-#### creating the project:
-- `npm create vite@latest`
-#### installing dependencies
+#### 1. Check Node.js and npm Version:
+```bash
+- node -v
+- npm -v
+```
+Ensure that Node.js and npm are installed on your system.
+If not installed, download and install them.
+
+#### 2. installing dependencies:
 - `npm install`
+- `npm install axios`
+- `npm install vite`
 - `npm i react-router-dom`
 - `npm install -D tailwindcss postcss autoprefixer`
 - `npx tailwindcss init -p`
 - `npm install @reduxjs/toolkit`
 - `npm install react-redux`
+- `npm install react-file-reader --save`
+- `npm install react-icons`
+- `npm install react-loader-spinner --save`
+
+#### 2. Running the Project:
+Once you have completed the setup, you can run the PlagCheck project locally using the following commands
+```bash
+cd `directory-name`
+npm run dev
+```
+
