@@ -7,6 +7,7 @@ function Result() {
   // States to manage plagiarism result
   const [plagiarismResult, setPlagiarismResult] = useState(null);
   const [text_sources, setTextSources] = useState([]);
+  const [text, setText] = useState([]);
   const [urls, setUrls] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -64,21 +65,30 @@ function Result() {
       <hr className="mt-4 h-0.5 bg-gray-300" />
       <div className="flex flex-col items-center px-8">
         <div className="m-3 font-semibold text-blue-500">عرض النصوص مع المصادر</div>
-        <div className="bg-gray-200 rounded-md text-gray-600 p-2.5 justify-center mb-2">
-          هذا نص تجريبي لعرض كيفية ظهور النص المسروق. يُستخدم هذا النص فقط كنموذج للعرض.
-        </div>
+        
         {/* Text sources list */}
-        <div className="link-container">
+        { !text_sources ? (
+            <div className="text-gray-600 p-2.5 justify-center mb-2">
+              الوثيقة أصلية ولا تحتوي على مصادر
+            </div>
+            ): (
+              <div className="source-container">
           <ul>
             {text_sources.map((text, index) => (
-              <li key={index} className="text-blue-500 underline">
-                <a href={urls[index]} target="_blank" rel="noopener noreferrer">
-                  • {text}
+              <li key={index}>
+              <div className="bg-gray-200 rounded-md text-gray-600 p-2.5 justify-center mb-2">
+              {text}
+              </div>
+                <a className="text-blue-500 underline flex justify-center" href={urls[index]} target="_blank" rel="noopener noreferrer">
+                  • رابط المصدر {index + 1}
                 </a>
               </li>
             ))}
-          </ul>
-        </div>
+            </ul>
+            </div>
+            )
+            }
+        
       </div>
 
       <Link to="/check/upload">
@@ -93,3 +103,18 @@ function Result() {
 }
 
 export default Result;
+
+
+{/*
+
+reader.onload = function (event) {
+      const content = event.target.result;
+      setFileContent(content);
+      setMsg("تم التحميل بنجاح!");
+      setUploadCompleted(true);
+    };
+    reader.onerror = () => {
+      setMsg("فشل التحميل!");
+      setProgress({ started: false, pc: 0 });
+    };
+  reader.readAsText(selectedFile);} */}

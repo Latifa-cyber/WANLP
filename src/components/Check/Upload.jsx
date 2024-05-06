@@ -4,6 +4,8 @@ import uploadIcon from "../../assets/uploadIcon.png";
 import Close_icon from "../../assets/Close_icon.svg";
 import TextIcon from "../../assets/TextIcon.png";
 import { FaArrowLeft } from 'react-icons/fa'; //run npm install react-icons
+import mammoth from "mammoth"; // run npm install mammoth
+
 
 
 function Upload() {
@@ -33,15 +35,47 @@ function Upload() {
     };
     reader.onload = function (event) {
       const content = event.target.result;
-      setFileContent(content);
-      setMsg("تم التحميل بنجاح!");
-      setUploadCompleted(true);
+  
+      if (selectedFile.type === "text/plain") {
+        setFileContent(content);
+        setMsg("تم التحميل بنجاح!");
+        setUploadCompleted(true);
+      } else if (
+        selectedFile.type ===
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      ) {
+        mammoth.extractRawText({ arrayBuffer: content })
+          .then((result) => {
+            setFileContent(result.value);
+            setMsg("تم التحميل بنجاح!");
+            setUploadCompleted(true);
+          })
+          .catch((err) => {
+            setMsg("فشل التحميل!");
+            setProgress({ started: false, pc: 0 });
+          });
+      } else {
+        setMsg("نوع الملف غير مدعوم!");
+        setProgress({ started: false, pc: 0 });
+      }
     };
+  
     reader.onerror = () => {
       setMsg("فشل التحميل!");
       setProgress({ started: false, pc: 0 });
     };
-    reader.readAsText(selectedFile);
+  
+    if (selectedFile.type === "text/plain") {
+      reader.readAsText(selectedFile);
+    } else if (
+      selectedFile.type ===
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    ) {
+      reader.readAsArrayBuffer(selectedFile);
+    } else {
+      setMsg("نوع الملف غير مدعوم!");
+      setProgress({ started: false, pc: 0 });
+    }
   };
 
   // Calculating remaining time for upload completion
